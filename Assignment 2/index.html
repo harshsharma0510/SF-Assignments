@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List of Users</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      .hidden {
+        display: none;
+      }
+      .editing {
+        background-color: #f2dede;
+      }
+      .edit-button,
+      .delete-button,
+      .save-button,
+      .cancel-button {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="loadButton" onclick="loadUserData()">Load Data</button>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Role</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody"></tbody>
+    </table>
+    <script src="script.js"></script>
+  </body>
+</html>
