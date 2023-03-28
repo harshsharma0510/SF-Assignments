@@ -1,4 +1,4 @@
-// Define User model class
+
 enum Role {
   SuperAdmin = "SuperAdmin",
   Admin = "Admin",
@@ -16,7 +16,7 @@ interface User {
   createdAt: Date;
 }
 
-// Define CRUD interface
+
 interface CrudActions<T> {
   create(item: T): void;
   read(): T[];
@@ -24,7 +24,7 @@ interface CrudActions<T> {
   delete(index: number): void;
 }
 
-// Define User CRUD class using generics
+
 class UserCrud implements CrudActions<User> {
   private userList: User[] = [];
 
@@ -45,7 +45,7 @@ class UserCrud implements CrudActions<User> {
   }
 }
 
-// Initialize User CRUD instance and populate sample data
+
 const userCrud = new UserCrud();
 
 const sampleData: User[] = [
@@ -82,7 +82,7 @@ const sampleData: User[] = [
 
 sampleData.forEach((user) => userCrud.create(user));
 
-// Define date time formatter decorator
+
 function dateTimeFormatter(target: Object, propertyKey: string): void {
   const original = target[propertyKey];
 
@@ -98,7 +98,7 @@ function dateTimeFormatter(target: Object, propertyKey: string): void {
   };
 }
 
-// Define UI functions
+
 function showData(): void {
   const userTable = document.getElementById("user-table");
   const userList = userCrud.read();
@@ -198,7 +198,7 @@ function deleteRow(index: number): void {
   showData();
 }
 
-// Attach event listener to load button
+
 const loadButton = document.getElementById("load-button");
 loadButton!.onclick = () => {
   showData();
