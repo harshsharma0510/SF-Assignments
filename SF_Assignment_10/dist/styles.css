@@ -1,0 +1,64 @@
+/* Body styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Button styles */
+#loadDataButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Table styles */
+#userDataTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0px 0px 5px #ccc;
+}
+
+#userDataTable th,
+#userDataTable td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#userDataTable th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #userDataTable {
+    font-size: 14px;
+  }
+
+  #userDataTable th,
+  #userDataTable td {
+    padding: 5px;
+  }
+
+  #loadDataButton {
+    font-size: 14px;
+  }
+}
