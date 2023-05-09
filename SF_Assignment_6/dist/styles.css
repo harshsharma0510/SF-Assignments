@@ -1,0 +1,99 @@
+/* Reset margins and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set the background color and font properties for the entire page */
+  body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Create a container for the main content */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Style the buttons */
+  button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  /* Add a hover effect for the buttons */
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the user table */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the table headers */
+  .user-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Style the table rows */
+  .user-table tr {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Style the table cells */
+  .user-table td {
+    padding: 10px;
+  }
+  
+  /* Use Flexbox for responsive columns */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+  
+  /* Create responsive columns */
+  .column {
+    flex: 1;
+    padding: 0 10px;
+  }
+  
+  /* Align the buttons in the center */
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Media queries for responsive design */
+  @media (max-width: 768px) {
+    .column {
+      flex-basis: 50%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .column {
+      flex-basis: 100%;
+    }
+  }
+  

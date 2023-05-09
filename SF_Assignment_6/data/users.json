@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "Harsh",
+    "middleName": "S",
+    "lastName": "Kaushik",
+    "email": "kyakarega@gmail.com",
+    "phoneNumber": "999955",
+    "role": "SuperAdmin",
+    "address": "India"
+  },
+  {
+    "firstName": "Krystal",
+    "middleName": "",
+    "lastName": "Clear",
+    "email": "kyakarega@example.com",
+    "phoneNumber": "00000000",
+    "role": "Admin",
+    "address": "USA"
+  },
+  {
+    "firstName": "NO",
+    "middleName": "",
+    "lastName": "Name",
+    "email": "kyakaregi@example.com",
+    "phoneNumber": "5000000",
+    "role": "Subscriber",
+    "address": "Australia"
+  }
+]
