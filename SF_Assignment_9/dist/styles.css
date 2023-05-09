@@ -1,0 +1,61 @@
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #eee;
+}
+
+tr:hover {
+  background-color: #e6e6e6;
+}
+
+.editing td {
+  padding: 0;
+}
+
+.editing input, .editing select {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+}
+
+.editing select {
+  height: 100%;
+}
+
+.editing button {
+  margin-right: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: #222;
+}
