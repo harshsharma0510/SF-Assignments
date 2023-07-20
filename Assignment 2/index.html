@@ -32,7 +32,24 @@
     </style>
   </head>
   <body>
-    <button id="loadButton" onclick="loadUserData()">Load Data</button>
+    <div style="display:flex;">
+      <button id="loadButton" onclick="loadUserData()">Load Data</button>
+      <button id="refreshButton" style="display:none;" onclick="refreshData()">Refresh</button>
+    </div>
+    <div id="createUserButtonSection" style="display:block;">
+      <button onclick="showCreateUserFields()">Create User</button>
+    </div>
+    <div id="createUserFieldsSection" style="display:none;">
+      <input type="text" id="newFirstName" placeholder="First Name">
+      <input type="text" id="newMiddleName" placeholder="Middle Name">
+      <input type="text" id="newLastName" placeholder="Last Name">
+      <input type="email" id="newEmail" placeholder="Email">
+      <input type="tel" id="newPhoneNumber" placeholder="Phone Number">
+      <input type="text" id="newRole" placeholder="Role">
+      <input type="text" id="newAddress" placeholder="Address">
+      <button onclick="saveNewUser()">Save</button>
+      <button onclick="cancelCreateUser()">Cancel</button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -48,6 +65,7 @@
       </thead>
       <tbody id="userTableBody"></tbody>
     </table>
+
     <script src="script.js"></script>
   </body>
 </html>

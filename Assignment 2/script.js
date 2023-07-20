@@ -50,8 +50,67 @@ function loadUserData() {
             `;
     tableBody.appendChild(row);
   }
-  document.getElementById("loadButton").innerHTML = "Refresh data";
+  
+  
+  document.getElementById("createUserButtonSection").style.display = "block";
+  document.getElementById("createUserFieldsSection").style.display = "none";
+  document.getElementById("loadButton").style.display = "none";
+  document.getElementById("refreshButton").style.display = "block";
 }
+function showCreateUserFields() {
+  document.getElementById("createUserButtonSection").style.display = "none";
+  document.getElementById("createUserFieldsSection").style.display = "block";
+}
+function saveNewUser() {
+  let newFirstName = document.getElementById("newFirstName").value;
+  let newMiddleName = document.getElementById("newMiddleName").value;
+  let newLastName = document.getElementById("newLastName").value;
+  let newEmail = document.getElementById("newEmail").value;
+  let newPhoneNumber = document.getElementById("newPhoneNumber").value;
+  let newRole = document.getElementById("newRole").value;
+  let newAddress = document.getElementById("newAddress").value;
+
+  let newUser = {
+    id: userData.length + 1,
+    firstName: newFirstName,
+    middleName: newMiddleName,
+    lastName: newLastName,
+    email: newEmail,
+    phoneNumber: newPhoneNumber,
+    role: newRole,
+    address: newAddress,
+  };
+
+  userData.push(newUser);
+
+  
+  document.getElementById("createUserButtonSection").style.display = "block";
+  document.getElementById("createUserFieldsSection").style.display = "none";
+  clearCreateUserFields();
+
+ 
+  loadUserData();
+}
+
+function cancelCreateUser() {
+  
+  document.getElementById("createUserButtonSection").style.display = "block";
+  document.getElementById("createUserFieldsSection").style.display = "none";
+  clearCreateUserFields();
+}
+
+function clearCreateUserFields() {
+  document.getElementById("newFirstName").value = "";
+  document.getElementById("newMiddleName").value = "";
+  document.getElementById("newLastName").value = "";
+  document.getElementById("newEmail").value = "";
+  document.getElementById("newPhoneNumber").value = "";
+  document.getElementById("newRole").value = "";
+  document.getElementById("newAddress").value = "";
+}
+
+
+  
 function editUser(button) {
   let row = button.parentNode.parentNode;
   let firstName = row.cells[0].innerHTML;
@@ -121,4 +180,12 @@ function cancelEdit(button) {
 function deleteUser(button) {
   let row = button.parentNode.parentNode;
   row.remove();
+}
+function refreshData() {
+  
+  document.getElementById("loadButton").style.display = "block";
+  document.getElementById("refreshButton").style.display = "none";
+
+  
+  loadUserData();
 }

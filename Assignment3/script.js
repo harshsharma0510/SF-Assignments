@@ -38,12 +38,6 @@ var UserActions = /** @class */ (function () {
         }
         var index = this.users.filter(findUser);
     };
-    /*updateUser(user: User): void {
-      const index = this.users.findIndex((u) => u.email === user.email);
-      if (index >= 0) {
-        this.users[index] = user;
-      }
-    }*/
     UserActions.prototype.deleteUser = function (id) {
         this.users.splice(id, 1);
     };
@@ -130,10 +124,48 @@ function renderUserTable() {
 var loadDataButton = document.querySelector("#load-data");
 loadDataButton.addEventListener("click", function () {
     var userTable = document.querySelector("#user-table");
-    userTable.style.display = "table";
-    loadDataButton.innerText = "Refresh data";
-    function refreshData() {
-        Actions.getAllUsers();
+    var createUserButton = document.querySelector("#create-user");
+    if (userTable.style.display === "none") {
+        userTable.style.display = "table";
+        createUserButton.style.display = "inline-block";
+        loadDataButton.innerText = "Refresh data";
+        renderUserTable();
     }
-    renderUserTable();
+    else {
+        userTable.style.display = "none";
+        createUserButton.style.display = "none";
+        loadDataButton.innerText = "Load data";
+    }
 });
+var createUserButton = document.querySelector("#create-user");
+createUserButton.style.display = "none";
+createUserButton.addEventListener("click", function () {
+    showUserCreationForm();
+});
+function showUserCreationForm() {
+    var userTable = document.querySelector("#user-table");
+    var createUserForm = document.createElement("div");
+    createUserForm.className = "create-user-form";
+    createUserForm.innerHTML = "\n    <h2>Create New User</h2>\n    <label>First Name: <input type=\"text\" id=\"first-name\" required></label><br>\n    <label>Middle Name: <input type=\"text\" id=\"middle-name\"></label><br>\n    <label>Last Name: <input type=\"text\" id=\"last-name\" required></label><br>\n    <label>Email: <input type=\"email\" id=\"email\" required></label><br>\n    <label>Phone Number: <input type=\"text\" id=\"phone-number\" required></label><br>\n    <label>Role: \n      <select id=\"role\" required>\n        <option value=\"Admin\">Admin</option>\n        <option value=\"User\">User</option>\n        <option value=\"Guest\">Guest</option>\n      </select>\n    </label><br>\n    <label>Address: <input type=\"text\" id=\"address\"></label><br>\n    <button id=\"save-new-user\">Save</button>\n    <button id=\"cancel-new-user\">Cancel</button>\n  ";
+    var saveNewUserButton = createUserForm.querySelector("#save-new-user");
+    saveNewUserButton.addEventListener("click", function () {
+        var firstName = document.querySelector("#first-name").value;
+        var middleName = document.querySelector("#middle-name").value;
+        var lastName = document.querySelector("#last-name").value;
+        var email = document.querySelector("#email").value;
+        var phoneNumber = document.querySelector("#phone-number").value;
+        var role = document.querySelector("#role").value;
+        var address = document.querySelector("#address").value;
+        var newUser = new User(firstName, middleName, lastName, email, phoneNumber, role, address);
+        Actions.createUser(newUser);
+        renderUserTable();
+        createUserButton.style.display = "inline-block";
+        document.body.removeChild(createUserForm);
+    });
+    var cancelNewUserButton = createUserForm.querySelector("#cancel-new-user");
+    cancelNewUserButton.addEventListener("click", function () {
+        createUserButton.style.display = "inline-block";
+        document.body.removeChild(createUserForm);
+    });
+    userTable.parentNode.insertBefore(createUserForm, userTable.nextSibling);
+}
