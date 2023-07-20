@@ -122,7 +122,7 @@ async function deleteUser(email: string): Promise<void> {
 }
 }
 
-// Initialize the application
+
 (function init() {
 userTable.style.display = 'none';
 })();

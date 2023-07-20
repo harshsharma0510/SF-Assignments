@@ -10,7 +10,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-// Get all users
+
 app.get('/api/users', async (req, res) => {
   try {
     const users = await userService.getUsers();
@@ -21,7 +21,7 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-// Create a new user
+
 app.post('/api/users', (req, res) => {
   const user = new User(
     req.body.firstName,
@@ -39,7 +39,7 @@ app.post('/api/users', (req, res) => {
     .catch((err) => res.status(500).send({ message: 'Error creating user' }));
 });
 
-// Update an existing user
+
 app.put('/api/users', (req, res) => {
   const user = new User(
     req.body.firstName,
@@ -57,7 +57,7 @@ app.put('/api/users', (req, res) => {
     .catch((err) => res.status(500).send({ message: 'Error updating user' }));
 });
 
-// Delete a user
+
 app.delete('/api/users/:email', (req, res) => {
   const email = req.params.email;
 
