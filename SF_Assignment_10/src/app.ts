@@ -62,6 +62,15 @@ interface Role {
       return this.userData;
     }
     async create(user: User): Promise<void> {
+      const response = await fetch('http://localhost:3000/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const data = await response.json();
+    this.userData.push(data);
     }
     async update(user: User): Promise<void> {
       const response = await fetch(`http://localhost:3000/api/users/${user.id}`, {
@@ -86,10 +95,11 @@ interface Role {
       private userData: UserData = new UserData;
       private userTable: HTMLTableElement | null;
       private loadDataButton: HTMLButtonElement | null;
-    
+      private createUserButton: HTMLButtonElement | null;
       constructor() {
         this.userTable = null;
         this.loadDataButton = null;
+        this.createUserButton = null;
         this.init();
       }
     
@@ -99,7 +109,11 @@ interface Role {
     
         this.userTable = document.getElementById('userDataTable') as HTMLTableElement;
         this.loadDataButton = document.getElementById('loadDataButton') as HTMLButtonElement;
+        this.createUserButton = document.getElementById('createUserButton') as HTMLButtonElement;
+      
+
         this.loadDataButton!.addEventListener('click', this.loadData.bind(this));
+        this.createUserButton.addEventListener('click', this.createUser.bind(this));
       }
   
     async loadData(): Promise<void> {
@@ -221,6 +235,49 @@ interface Role {
       async deleteRow(row: HTMLTableRowElement, userId: number): Promise<void> {
         row.parentNode!.removeChild(row);
       }
+      async createUser(): Promise<void> {
+        const emptyUser: User = {
+          id: 0, 
+          first_name: '',
+          middle_name: '',
+          last_name: '',
+          email: '',
+          phone_number: '',
+          address: '',
+          customer_id: 0,
+          customer_name: '',
+          role_id: 0,
+          role_name: '',
+          created_at: new Date(),
+          modified_on: new Date(),
+        };
+    
+        const newRow = this.createRow(emptyUser);
+    
+        const tbody = this.userTable!.querySelector('tbody');
+        tbody!.insertBefore(newRow, tbody!.firstChild);
+
+        const cancelButton = newRow.querySelector('.cancelButton') as HTMLButtonElement;
+        if(cancelButton) {
+    cancelButton.addEventListener('click', () => this.cancelCreate(newRow, emptyUser));
+        }
+        this.editRow(newRow, emptyUser);
+      }
+    
+      cancelCreate(row: HTMLTableRowElement, user : User): void {
+        if (user.id === 0) {
+        row.parentNode!.removeChild(row);
+      } else {
+         row.classList.remove('editing');
+      const newRow = this.createRow(user);
+      const editButton = newRow.querySelector('.editButton') as HTMLButtonElement;
+      const deleteButton = newRow.querySelector('.deleteButton') as HTMLButtonElement;
+      editButton.addEventListener('click', this.editRow.bind(this, newRow, user));
+      deleteButton.addEventListener('click', this.deleteRow.bind(this, newRow, user.id));
+      row.parentNode!.replaceChild(newRow, row);
+
+      }
     }
+  }
     const app = new App();
   

@@ -1,4 +1,4 @@
-/* Body styles */
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Header styles */
+
 h1 {
   text-align: center;
   margin-top: 30px;
@@ -14,7 +14,7 @@ h1 {
   color: #333;
 }
 
-/* Button styles */
+
 #loadDataButton {
   display: block;
   margin: 20px auto;
@@ -26,8 +26,17 @@ h1 {
   font-size: 16px;
   cursor: pointer;
 }
-
-/* Table styles */
+#createUserButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
 #userDataTable {
   width: 100%;
   border-collapse: collapse;
@@ -47,7 +56,6 @@ h1 {
   color: #333;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   #userDataTable {
     font-size: 14px;
