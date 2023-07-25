@@ -1,5 +1,5 @@
 {
-  "name": "typescript-express-postgres",
+  "name": "",
   "version": "1.0.0",
   "description": "A TypeScript project using Express and PostgreSQL",
   "scripts": {
@@ -7,7 +7,7 @@
     "dev:server": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
     "dev:client": "webpack serve --config webpack.config.js --mode development",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "tsc && node dist/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

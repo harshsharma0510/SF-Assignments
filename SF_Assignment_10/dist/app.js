@@ -46,6 +46,15 @@ class UserData {
     }
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
+            const response = yield fetch('http://localhost:3000/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            });
+            const data = yield response.json();
+            this.userData.push(data);
         });
     }
     update(user) {
@@ -75,6 +84,7 @@ class App {
         this.userData = new UserData;
         this.userTable = null;
         this.loadDataButton = null;
+        this.createUserButton = null;
         this.init();
     }
     init() {
@@ -83,7 +93,9 @@ class App {
             yield Promise.all([this.userData.getCustomers(), this.userData.getRoles()]);
             this.userTable = document.getElementById('userDataTable');
             this.loadDataButton = document.getElementById('loadDataButton');
+            this.createUserButton = document.getElementById('createUserButton');
             this.loadDataButton.addEventListener('click', this.loadData.bind(this));
+            this.createUserButton.addEventListener('click', this.createUser.bind(this));
         });
     }
     loadData() {
@@ -200,6 +212,47 @@ class App {
         return __awaiter(this, void 0, void 0, function* () {
             row.parentNode.removeChild(row);
         });
+    }
+    createUser() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const emptyUser = {
+                id: 0,
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                email: '',
+                phone_number: '',
+                address: '',
+                customer_id: 0,
+                customer_name: '',
+                role_id: 0,
+                role_name: '',
+                created_at: new Date(),
+                modified_on: new Date(),
+            };
+            const newRow = this.createRow(emptyUser);
+            const tbody = this.userTable.querySelector('tbody');
+            tbody.insertBefore(newRow, tbody.firstChild);
+            const cancelButton = newRow.querySelector('.cancelButton');
+            if (cancelButton) {
+                cancelButton.addEventListener('click', () => this.cancelCreate(newRow, emptyUser));
+            }
+            this.editRow(newRow, emptyUser);
+        });
+    }
+    cancelCreate(row, user) {
+        if (user.id === 0) {
+            row.parentNode.removeChild(row);
+        }
+        else {
+            row.classList.remove('editing');
+            const newRow = this.createRow(user);
+            const editButton = newRow.querySelector('.editButton');
+            const deleteButton = newRow.querySelector('.deleteButton');
+            editButton.addEventListener('click', this.editRow.bind(this, newRow, user));
+            deleteButton.addEventListener('click', this.deleteRow.bind(this, newRow, user.id));
+            row.parentNode.replaceChild(newRow, row);
+        }
     }
 }
 const app = new App();

@@ -9,7 +9,7 @@ const connection = {
   port: 5432,
   database: 'mydatabase',
   user: 'postgres',
-  password: 'postgres',
+  password: '05101996',
 };
 const app = express();
 app.use(cors());
