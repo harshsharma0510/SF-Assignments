@@ -1,22 +1,14 @@
-<h1>User Data Table</h1>
-<button id="loadDataButton">Load data</button>
-<button id="createUserButton">Create User</button>
-<table id="userDataTable">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Middle Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Phone Number</th>
-      <th>Address</th>
-      <th>Customer</th>
-      <th>Role</th>
-      <th>Created On</th>
-      <th>Modified On</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+
+<div class="app-container" [ngClass]="{ 'logged-in': isUserLoggedIn }">
+     <h1>Welcome to My App</h1>
+     <ng-container *ngIf="!isUserLoggedIn">
+       <app-login (login)="login()"></app-login>
+     </ng-container>
+     <ng-container *ngIf="isUserLoggedIn">
+       <button (click)="logout()">Logout</button>
+       <app-users *ngIf="isUserLoggedIn"></app-users>
+       <app-customers *ngIf="isUserLoggedIn"></app-customers>
+       <app-roles *ngIf="isUserLoggedIn"></app-roles>
+     </ng-container>
+   </div>
+   
